@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple flashcard quiz app to create, study, and manage your own flashcards.">
+  <title>Flashcard Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FlashLearn home">
+        <span class="brand-icon" aria-hidden="true">✦</span>
+        <span>Flash<span class="brand-accent">Learn</span></span>
+      </a>
+      <span class="saved-status" id="savedStatus"><span class="status-dot"></span> Saved in this browser</span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+      <h1>Learn it. <span>Remember it.</span></h1>
+      <p class="intro-copy">Small steps today. Big knowledge tomorrow.</p>
+    </section>
+
+    <section class="study-panel" aria-labelledby="studyHeading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STUDY SESSION</p>
+          <h2 id="studyHeading">Your flashcards</h2>
+        </div>
+        <span class="count-pill" id="cardCount">1 / 5</span>
+      </div>
+
+      <div class="progress-track" aria-label="Study progress">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <article class="flashcard" id="flashcard" aria-live="polite">
+        <div class="card-topline">
+          <span id="cardLabel">QUESTION</span>
+          <span class="sparkle" aria-hidden="true">✧</span>
+        </div>
+        <div class="card-content">
+          <p class="card-text" id="cardText">What does HTML stand for?</p>
+          <p class="card-hint" id="cardHint">Think about the structure of a web page.</p>
+        </div>
+        <div class="card-footer">
+          <span id="cardNumber">CARD 01</span>
+          <span>FLASHCARD</span>
+        </div>
+      </article>
+
+      <div class="study-actions">
+        <button class="button button-secondary" id="previousBtn" type="button">← Previous</button>
+        <button class="button button-primary" id="showAnswerBtn" type="button">Show answer <span aria-hidden="true">↗</span></button>
+        <button class="button button-secondary" id="nextBtn" type="button">Next →</button>
+      </div>
+      <p class="keyboard-note">Tip: take your time and try to answer before revealing the card.</p>
+    </section>
+
+    <section class="manage-panel" aria-labelledby="manageHeading">
+      <div class="section-heading manage-heading">
+        <div>
+          <p class="eyebrow">MAKE IT YOURS</p>
+          <h2 id="manageHeading">Manage cards</h2>
+          <p class="muted">Create your own questions or update your study set.</p>
+        </div>
+        <button class="button button-primary add-button" id="addCardBtn" type="button">＋ Add card</button>
+      </div>
+
+      <form id="cardForm" class="card-form" hidden>
+        <div class="form-title-row">
+          <h3 id="formHeading">Add a flashcard</h3>
+          <button class="icon-button" id="cancelFormBtn" type="button" aria-label="Close form">✕</button>
+        </div>
+        <label for="questionInput">Question</label>
+        <textarea id="questionInput" rows="2" maxlength="300" placeholder="Write a question..." required></textarea>
+        <label for="answerInput">Answer</label>
+        <textarea id="answerInput" rows="3" maxlength="600" placeholder="Write the answer..." required></textarea>
+        <div class="form-actions">
+          <button class="button button-secondary" id="cancelFormTextBtn" type="button">Cancel</button>
+          <button class="button button-primary" type="submit" id="saveCardBtn">Save card</button>
+        </div>
+        <p class="form-error" id="formError" role="alert"></p>
+      </form>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon">✧</div>
+        <h3>No cards yet</h3>
+        <p>Add your first flashcard to begin studying.</p>
+      </div>
+      <div class="card-list" id="cardList" aria-live="polite"></div>
+      <div class="manage-footer">
+        <span id="totalCards">5 cards in your study set</span>
+        <button class="text-button" id="resetBtn" type="button">Restore sample cards</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Made for curious minds</span>
+      <span>CodeAlpha · App Development</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
